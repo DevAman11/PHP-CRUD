@@ -26,6 +26,7 @@
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
         <a href="/AmanCrudapp/Register.php" class="text-sm/6 font-semibold text-gray-900">Register</a>
+        <a href="/AmanCrudapp/CreateAdmin.php" class="text-sm/6 font-semibold text-gray-900">Admin Register</a>
         <a href="/AmanCrudapp/UserData.php" class="text-sm/6 font-semibold text-gray-900">UserData</a>
         <a href="/AmanCrudapp/Login.php" class="text-sm/6 font-semibold text-gray-900">Login</a>
       </div>
@@ -54,6 +55,7 @@
           <div class="-my-6 divide-y divide-gray-500/10">
             <div class="space-y-2 py-6">
               <a href="/AmanCrudapp/Register.php" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Register</a>
+              <a href="/AmanCrudapp/CreateAdmin.php" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Admin Register</a>
               <a href="/AmanCrudapp/UserData.php" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">UserData</a>
               <a href="/AmanCrudapp/Login.php" class="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">Login</a>
             </div>

@@ -4,19 +4,48 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
 </head>
 <body>
 
-<div>
 <?php
-include "Navbar.php"
+include "Navbar.php";
+include "Dbconnection.php";
+ 
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+
+$Username  = $_POST['adminUsername'];
+$Email  = $_POST['adminEmail'];
+$Password  = $_POST['adminPassword'];  
+
+$SqlData = "Select * from createAdmin where Username = '$Username' AND Email = '$Email' AND  Password = '$Password'";
+// $SqlData = "SELECT * FROM createAdmin WHERE Username = '$Username' AND Email = '$Email' AND Password = '$Password'";
+
+$result = mysqli_query($Connection,$SqlData);
+
+if ($result) {
+	echo "Login Successfully with Admin Data";
+} else {
+	echo "Error: " . mysqli_error($Connection);
+}
+
+header("location:Dashboard.php");
+
+}
+
+
+
 ?>
-</div>  
+
+
 <br><br><br>
 
 
 <!-- component -->
+
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+<form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
 <div
 	class="bg-purple-900 absolute top-15 left-0 bg-gradient-to-b from-gray-900 via-gray-900 to-purple-800 bottom-0  h-full w-full overflow-hidden">
 	
@@ -38,13 +67,15 @@ include "Navbar.php"
 						class="text-sm text-purple-700 hover:text-purple-700">Sign Up</a></p>
 			</div>
 			<div class="space-y-6">
-				<div class="">
-					<input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-gray-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" type="" placeholder="Email">
+			      	<div class="">
+					<input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-gray-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" name="adminUsername"  type="" placeholder="Username">
+              </div>
+			      	<div class="">
+					<input class=" w-full text-sm  px-4 py-3 bg-gray-200 focus:bg-gray-100 border  border-gray-200 rounded-lg focus:outline-none focus:border-purple-400" name="adminEmail"  type="" placeholder="Email">
               </div>
 
-
 					<div class="relative" x-data="{ show: true }">
-						<input placeholder="Password" :type="show ? 'password' : 'text'" class="text-sm text-gray-200 px-4 py-3 rounded-lg w-full bg-gray-200 focus:bg-gray-100 border border-gray-200 focus:outline-none focus:border-purple-400">
+						<input placeholder="Password" :type="show ? 'password':'text'" name="adminPassword"  class="text-sm text-black-900 px-4 py-3 rounded-lg w-full bg-gray-200 focus:bg-gray-100 border border-gray-200 focus:outline-none focus:border-purple-400">
 						<div class="flex items-center absolute inset-y-0 right-0 mr-3  text-sm leading-5">
 
 							<svg @click="show = !show" :class="{'hidden': !show, 'block':show }"
@@ -117,5 +148,6 @@ include "Navbar.php"
 
 <svg class="absolute top-126 bottom-0 left-0 " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fff" fill-opacity="1" d="M0,0L40,42.7C80,85,160,171,240,197.3C320,224,400,192,480,154.7C560,117,640,75,720,74.7C800,75,880,117,960,154.7C1040,192,1120,224,1200,213.3C1280,203,1360,149,1400,122.7L1440,96L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path></svg>
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js"></script>
+</form>
 </body>
 </html>

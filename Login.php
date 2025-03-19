@@ -123,10 +123,27 @@
 </head>
 <body>
   <?php 
+  
   include "Navbar.php";
+  include "Dbconnection.php";
+   
+  if($_SERVER['REQUEST_METHOD'] == "POST"){
+
+  $SqlData = "Select * from myData  where Email = 'Email' AND  Password = 'Password'";
+
+  $result = mysqli_query($Connection,$SqlData);
+
+  if ($result) {
+    echo "Login Successfully with Existed Data";
+} else {
+    echo "Error: " . mysqli_error($Connection);
+}
+
+  }
+
   ?>
 
-<div class="relative min-h-screen flex ">
+<div class="relative min-h-screen flex  ">
     <div class="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto min-w-0 bg-white">
       <div class="sm:w-1/2 xl:w-2/5 h-full hidden md:flex flex-auto items-center justify-start p-10 overflow-hidden bg-purple-900 text-white bg-no-repeat bg-cover relative" style="background-image: url(https://images.unsplash.com/photo-1579451861283-a2239070aaa9?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1950&amp;q=80);">
         <div class="absolute bg-gradient-to-b from-blue-900 to-gray-900 opacity-75 inset-0 z-0"></div>
@@ -172,21 +189,22 @@
             <span class="text-gray-300 font-normal">or continue with</span>
             <span class="h-px w-16 bg-gray-200"></span>
           </div>
-          <form class="mt-8 space-y-6" action="#" method="POST">
+
+          <form class="mt-8 space-y-6" action="<?php $_SERVER['PHP_SELF'] ?>" method="POST">
             <input type="hidden" name="remember" value="true">
             <div class="relative">
-              <div class="absolute right-3 mt-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <!-- <div class="absolute right-3 mt-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                 </svg>
-              </div>
+              </div> -->
               <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">Email</label>
-              <input class=" w-full text-base px-4 py-2 border-b border-gray-300 focus:outline-none rounded-2xl focus:border-indigo-500" type="" placeholder="mail@gmail.com" value="mail@gmail.com">
+              <input class=" w-full text-base px-4 py-2 border-b border-gray-300 focus:outline-none rounded-2xl focus:border-indigo-500" type="email" name="Email" placeholder="mail@gmail.com" >
             </div>
             <div class="mt-8 content-center">
               <label class="ml-3 text-sm font-bold text-gray-700 tracking-wide">
                 Password
               </label>
-              <input class="w-full content-center text-base px-4 py-2 border-b rounded-2xl border-gray-300 focus:outline-none focus:border-indigo-500" type="" placeholder="Enter your password" value="*****|">
+              <input class="w-full content-center text-base px-4 py-2 border-b rounded-2xl border-gray-300 focus:outline-none focus:border-indigo-500" type="password" name="Password" placeholder="Enter your password" >
             </div>
             <div class="flex items-center justify-between">
               <div class="flex items-center">
